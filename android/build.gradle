@@ -1,0 +1,33 @@
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+        maven {
+            url "https://jitpack.io"
+            credentials { username "jp_7nm9vgpau70o93gs9tai5rics2" }
+        }
+    }
+}
+
+ buildscript {
+     repositories {
+         google()
+         mavenCentral()
+         maven {
+             url "https://jitpack.io"
+             credentials { username "jp_7nm9vgpau70o93gs9tai5rics2" }
+         }
+     }
+ }
+
+rootProject.buildDir = "../build"
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
+}
+subprojects {
+    project.evaluationDependsOn(":app")
+}
+
+tasks.register("clean", Delete) {
+    delete rootProject.buildDir
+}
